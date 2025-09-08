@@ -4,6 +4,7 @@ import builder.entities.Brutus;
 import builder.inventory.*;
 import builder.inventory.ui.InventoryOverlay;
 import builder.inventory.ui.ResourceOverlay;
+import builder.player.PlayerManager;
 import builder.world.WorldLoadException;
 
 import engine.EngineState;
@@ -34,10 +35,10 @@ public class JavaBeanFarm implements Game {
 
 
     // Stage 0: Uncomment this line to store brutus
-    private final Entity brutus;
+    // private final Entity brutus;
 
     // Stage 1: Uncomment this line to manage the player.
-//     private final PlayerManager playerManager;
+    private final PlayerManager playerManager;
 
     // Stage 2: Uncomment this line to manage the world.
     // private final BeanWorld world;
@@ -58,10 +59,10 @@ public class JavaBeanFarm implements Game {
         int centerY = dimensions.windowSize() / 2;
 
         // Stage 0: Remove Brutus after this stage
-        this.brutus = new Brutus(centerX, centerY);
+        // this.brutus = new Brutus(centerX, centerY);
 
         // Stage 1: Uncomment this line to put the player in the screen center.
-        // this.playerManager = new PlayerManager(centerX, centerY);
+        this.playerManager = new PlayerManager(centerX, centerY);
 
         // Stage 2: Uncomment this line to load the default world from the file.
         // this.world = WorldBuilder.fromFile(dimensions, "resources/uqLogo.map");
@@ -89,11 +90,11 @@ public class JavaBeanFarm implements Game {
      */
     public void tick(EngineState state) {
         // Stage 0: Uncomment this line to progress Brutus.
-        this.brutus.tick(state);
+        // this.brutus.tick(state);
 
         // Stage 1: Uncomment these lines to progress the player.
-        // GameState game = new JavaBeanGameState(world, playerManager.getPlayer(), inventory);
-        // this.playerManager.tick(state, game);
+        //GameState game = new JavaBeanGameState(world, playerManager.getPlayer(), inventory);
+        this.playerManager.tick(state, null);
 
         // Stage 2: Uncomment this line to progress the world.
         // this.world.tick(state, game);
@@ -124,10 +125,10 @@ public class JavaBeanFarm implements Game {
         // renderables.addAll(this.world.render());
 
         // Stage 1: Uncomment this line to render the player.
-        // renderables.addAll(this.playerManager.render());
+        renderables.addAll(this.playerManager.render());
 
         // Stage 0: Uncomment this line to render Brutus.
-        renderables.add(this.brutus);
+        // renderables.add(this.brutus);
 
         // Stage 3: Uncomment this line to render the inventory overlays.
         // for (Overlay overlay : overlays) {
