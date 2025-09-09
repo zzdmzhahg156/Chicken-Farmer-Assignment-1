@@ -11,14 +11,15 @@ import engine.game.Entity;
 import engine.game.HasTick;
 import engine.renderer.Renderable;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public abstract class Tile
         extends Entity
         implements Interactable, Usable, RenderableGroup, HasTick {
-    private int x;
-    private int y;
     private SpriteGroup art;
+    private List<Entity> stackedEntitites;
 
     public Tile(int x,
                 int y,
@@ -28,20 +29,40 @@ public abstract class Tile
     }
 
     public void setArt(SpriteGroup art) {
-
+        this.art = art;
+        updateSprite("default");
     }
 
     public void updateSprite(String artName)
-            throws ArtNotFoundException {}
-
-    @Override
-    public void tick(EngineState engine){}
-
-    public List<Entity> getStackedEntities(){
-        return null;
+            throws ArtNotFoundException {
+        setSprite(art.getSprite(artName));
     }
 
-    public void placeOn(Entity tile) {}
+    @Override
+    public void tick(EngineState engine){
+        Iterator<Entity> it = stackedEntitites.iterator();
+        while (it.hasNext()) {
+            Entity entity = it.next();
+            if (entity.isMarkedForRemoval()) {
+                it.remove();
+            }
+        }
+        for (Entity entity: stackedEntitites) {
+            if (entity instanceof HasTick tickable) {
+                tickable.tick(engine);
+            }
+        }
+
+    }
+    public List<Entity> getStackedEntities(){
+        return new ArrayList<>(stackedEntitites);
+    }
+
+    public void placeOn(Entity tile) {
+        if (tile != null && !stackedEntitites.contains(tile)) {
+            stackedEntitites.add(tile);
+        }
+    }
 
     @Override
     public void interact(EngineState state,
@@ -57,7 +78,10 @@ public abstract class Tile
 
     @Override
     public List<Renderable> render(){
-        return null;
+        List<Renderable> renderables= new ArrayList<>();
+        renderables.add(this);
+        renderables.addAll(stackedEntitites);
+        return renderables;
     }
 
 
