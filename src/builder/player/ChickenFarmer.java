@@ -31,8 +31,14 @@ public class ChickenFarmer extends Entity implements Player {
             new Animation(
                     AnimationDuration.SLOW,
                     new Sprite[] {
-                            art.getSprite("down"), art.getSprite("down1"), art.getSprite("down2")
+                            art.getSprite("down"), art.getSprite("down1"), art.getSprite("down2")});
+    private final Animation downFace =
+            new Animation(
+                    AnimationDuration.SLOW,
+                    new Sprite[] {
+                            art.getSprite("down")
                     });
+
 
     private Direction travelling = Direction.SOUTH;
 
@@ -62,12 +68,12 @@ public class ChickenFarmer extends Entity implements Player {
             case WEST -> setSprite(leftWalking);
             case NORTH -> setSprite(upWalking);
             case SOUTH -> setSprite(downWalking);
-//            default -> setSprite(downWalking);
         }
     }
 
     @Override
     public void tick (EngineState state) {
+        setSprite(downFace);
         leftWalking.tick(state);
         rightWalking.tick(state);
         downWalking.tick(state);

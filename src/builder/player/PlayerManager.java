@@ -30,7 +30,7 @@ public class PlayerManager implements Tickable, RenderableGroup {
         } else if (keys.isDown('d')) {
             chickenFarmer.move(Direction.EAST, 1);
         } else {
-            chickenFarmer.move(Direction.SOUTH, 0);
+//            chickenFarmer.move(Direction.SOUTH, 0);
         }
 
     }
