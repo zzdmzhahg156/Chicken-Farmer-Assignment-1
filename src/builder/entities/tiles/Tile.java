@@ -68,11 +68,23 @@ public abstract class Tile
 
     @Override
     public void interact(EngineState state,
-                         GameState game){}
+                         GameState game){
+        for (Entity entity : stackedEntitites) {
+            if (entity instanceof Interactable) {
+                ((Interactable) entity).interact(state, game);
+            }
+        }
+    }
 
     @Override
     public void use(EngineState state,
-                    GameState game){}
+                    GameState game){
+        for (Entity entity : stackedEntitites) {
+            if (entity instanceof Usable) {
+                ((Usable) entity).use(state,game);
+            }
+        }
+    }
 
     public boolean canWalkThrough(){
         return true;

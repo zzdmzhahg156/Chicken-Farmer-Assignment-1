@@ -101,7 +101,7 @@ public class JavaBeanFarm implements Game {
         this.playerManager.tick(state, game);
 
         // Stage 2: Uncomment this line to progress the world.
-        // this.world.tick(state, game);
+        this.world.tick(state, game);
 
         // Stage 3: Uncomment these lines to progress the inventory overlays.
         // for (Overlay overlay : overlays) {
