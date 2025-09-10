@@ -2,9 +2,13 @@ package builder;
 
 import builder.entities.Brutus;
 import builder.inventory.*;
+import builder.inventory.items.Bucket;
+import builder.inventory.items.Hoe;
+import builder.inventory.items.Jackhammer;
 import builder.inventory.ui.InventoryOverlay;
 import builder.inventory.ui.ResourceOverlay;
 import builder.player.PlayerManager;
+import builder.ui.Overlay;
 import builder.world.BeanWorld;
 import builder.world.WorldBuilder;
 import builder.world.WorldLoadException;
@@ -48,8 +52,8 @@ public class JavaBeanFarm implements Game {
     private final BeanWorld world;
 
     // Stage 3: Uncomment these lines to include the inventory.
-    // private final Inventory inventory;
-    // private final List<Overlay> overlays = new ArrayList<>();
+    private final Inventory inventory;
+    private final List<Overlay> overlays = new ArrayList<>();
 
     /**
      * Constructs a new JavaBean Farm game using the given dimensions.
@@ -72,14 +76,14 @@ public class JavaBeanFarm implements Game {
         this.world = WorldBuilder.fromFile(dimensions, "resources/uqLogo.map");
 
         // Stage 3: Uncomment these lines to create the default inventory.
-        // int inventorySize = 4;
-        // this.inventory = new TinyInventory(inventorySize);
-        // inventory.setItem(0, new Bucket());
-        // inventory.setItem(1, new Hoe());
-        // inventory.setItem(2, new Jackhammer());
+        int inventorySize = 4;
+        this.inventory = new TinyInventory(inventorySize);
+        inventory.setItem(0, new Bucket());
+        inventory.setItem(1, new Hoe());
+        inventory.setItem(2, new Jackhammer());
 
-        // this.overlays.add(new InventoryOverlay(dimensions, inventorySize));
-        // this.overlays.add(new ResourceOverlay(dimensions));
+        this.overlays.add(new InventoryOverlay(dimensions, inventorySize));
+        this.overlays.add(new ResourceOverlay(dimensions));
     }
 
     /**
@@ -97,16 +101,16 @@ public class JavaBeanFarm implements Game {
         // this.brutus.tick(state);
 
         // Stage 1: Uncomment these lines to progress the player.
-        GameState game = new JavaBeanGameState(world, playerManager.getPlayer(), null); //null = inverntory
+        GameState game = new JavaBeanGameState(world, playerManager.getPlayer(), inventory); //null = inverntory
         this.playerManager.tick(state, game);
 
         // Stage 2: Uncomment this line to progress the world.
         this.world.tick(state, game);
 
         // Stage 3: Uncomment these lines to progress the inventory overlays.
-        // for (Overlay overlay : overlays) {
-        //    overlay.tick(state, game);
-        // }
+        for (Overlay overlay : overlays) {
+           overlay.tick(state, game);
+        }
     }
 
     /**
@@ -135,9 +139,9 @@ public class JavaBeanFarm implements Game {
         // renderables.add(this.brutus);
 
         // Stage 3: Uncomment this line to render the inventory overlays.
-        // for (Overlay overlay : overlays) {
-        //    renderables.addAll(overlay.render());
-        // }
+        for (Overlay overlay : overlays) {
+           renderables.addAll(overlay.render());
+        }
 
         return renderables;
     }
