@@ -5,6 +5,8 @@ import builder.inventory.*;
 import builder.inventory.ui.InventoryOverlay;
 import builder.inventory.ui.ResourceOverlay;
 import builder.player.PlayerManager;
+import builder.world.BeanWorld;
+import builder.world.WorldBuilder;
 import builder.world.WorldLoadException;
 
 import engine.EngineState;
@@ -16,6 +18,8 @@ import engine.renderer.Renderable;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+
 
 /**
  * JavaBeans, a farming game.
@@ -41,7 +45,7 @@ public class JavaBeanFarm implements Game {
     private final PlayerManager playerManager;
 
     // Stage 2: Uncomment this line to manage the world.
-    // private final BeanWorld world;
+    private final BeanWorld world;
 
     // Stage 3: Uncomment these lines to include the inventory.
     // private final Inventory inventory;
@@ -65,7 +69,7 @@ public class JavaBeanFarm implements Game {
         this.playerManager = new PlayerManager(centerX, centerY);
 
         // Stage 2: Uncomment this line to load the default world from the file.
-        // this.world = WorldBuilder.fromFile(dimensions, "resources/uqLogo.map");
+        this.world = WorldBuilder.fromFile(dimensions, "resources/uqLogo.map");
 
         // Stage 3: Uncomment these lines to create the default inventory.
         // int inventorySize = 4;
@@ -93,8 +97,8 @@ public class JavaBeanFarm implements Game {
         // this.brutus.tick(state);
 
         // Stage 1: Uncomment these lines to progress the player.
-        //GameState game = new JavaBeanGameState(world, playerManager.getPlayer(), inventory);
-        this.playerManager.tick(state, null);
+        GameState game = new JavaBeanGameState(world, playerManager.getPlayer(), null); //null = inverntory
+        this.playerManager.tick(state, game);
 
         // Stage 2: Uncomment this line to progress the world.
         // this.world.tick(state, game);
@@ -122,7 +126,7 @@ public class JavaBeanFarm implements Game {
         List<Renderable> renderables = new ArrayList<>();
 
         // Stage 2: Uncomment this line to render the world.
-        // renderables.addAll(this.world.render());
+        renderables.addAll(this.world.render());
 
         // Stage 1: Uncomment this line to render the player.
         renderables.addAll(this.playerManager.render());

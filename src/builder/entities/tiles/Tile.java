@@ -26,6 +26,8 @@ public abstract class Tile
                 SpriteGroup art) {
         super(x, y);
         this.art = art;
+        this.stackedEntitites = new ArrayList<>();
+        updateSprite("default");
     }
 
     public void setArt(SpriteGroup art) {
