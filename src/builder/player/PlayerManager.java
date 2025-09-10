@@ -8,6 +8,7 @@ import builder.world.World;
 import engine.EngineState;
 import engine.game.Direction;
 import engine.input.KeyState;
+import engine.input.MouseState;
 import engine.renderer.Dimensions;
 import engine.renderer.Renderable;
 
@@ -30,11 +31,9 @@ public class PlayerManager implements Tickable, RenderableGroup {
         }
 
         KeyState keys = state.getKeys();
-
         int targetX = chickenFarmer.getX();
         int targetY = chickenFarmer.getY();
         int move_amount = state.getDimensions().tileSize()/2;
-
 
         if (keys.isDown('w')) {
             targetY -= move_amount;
@@ -46,10 +45,8 @@ public class PlayerManager implements Tickable, RenderableGroup {
             targetX += move_amount;
         }
 
-
         Dimensions dimensions = state.getDimensions();
         List<Tile> tilesAtTarget = world.tilesAtPosition(targetX, targetY, dimensions);
-
 
         for (Tile tile : tilesAtTarget) {
             if (!tile.canWalkThrough()) {
@@ -72,6 +69,24 @@ public class PlayerManager implements Tickable, RenderableGroup {
             chickenFarmer.move(Direction.WEST, 1);
         } else if (keys.isDown('d') && canMove(state, game)) {
             chickenFarmer.move(Direction.EAST, 1);
+        }
+
+        World world = game.getWorld();
+        Dimensions dimension = state.getDimensions();
+
+        List<Tile> tiles = world.tilesAtPosition(chickenFarmer.getX(), chickenFarmer.getY(), dimension);
+        for (Tile tile : tiles) {
+            tile.interact(state, game);
+        }
+
+        MouseState mouse = state.getMouse();
+        if (mouse.isLeftPressed()) {
+            chickenFarmer.use(game.getInventory().getHolding());
+
+            for (Tile tile : tiles) {
+                tile.use(state, game);
+            }
+
         }
     }
 

@@ -1,5 +1,6 @@
 package builder.player;
 
+import builder.inventory.items.Item;
 import builder.ui.SpriteGallery;
 import engine.EngineState;
 import engine.art.sprites.Sprite;
@@ -39,10 +40,7 @@ public class ChickenFarmer extends Entity implements Player {
                             art.getSprite("down")
                     });
 
-
     private Direction travelling = Direction.SOUTH;
-
-
 
     public ChickenFarmer(int x, int y){
         super(x,y);
@@ -78,6 +76,17 @@ public class ChickenFarmer extends Entity implements Player {
         rightWalking.tick(state);
         downWalking.tick(state);
         upWalking.tick(state);
+    }
+
+    public void use(Item item) {
+        if (item == null){
+            return;
+        }
+
+        if (item.useAnimation().isPresent()) {
+            Animation currentAnimation = item.useAnimation().get();
+            setSprite(currentAnimation);
+        }
     }
 
 

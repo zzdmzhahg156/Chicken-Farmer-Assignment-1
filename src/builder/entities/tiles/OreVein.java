@@ -1,5 +1,6 @@
 package builder.entities.tiles;
 
+import builder.entities.resources.Ore;
 import builder.ui.SpriteGallery;
 import engine.art.sprites.SpriteGroup;
 
@@ -8,5 +9,9 @@ public class OreVein extends Tile{
 
     public OreVein(int x, int y) {
         super(x, y, SpriteGallery.field);
+    }
+
+    public Ore getOre() {
+        return new Ore(this.getX(), this.getY());
     }
 }

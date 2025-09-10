@@ -33,8 +33,8 @@ public class Main {
         Engine engine = new Engine(game, dimensions);
 
         // Optionally uncomment this line to turn on debug mode
-         engine.debug().on();
-
+//        engine.debug().on();
+//
         run(engine);
     }
 

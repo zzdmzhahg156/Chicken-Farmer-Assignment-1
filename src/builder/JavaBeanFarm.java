@@ -138,7 +138,7 @@ public class JavaBeanFarm implements Game {
         // Stage 0: Uncomment this line to render Brutus.
         // renderables.add(this.brutus);
 
-        // Stage 3: Uncomment this line to render the inventory overlays.
+//        // Stage 3: Uncomment this line to render the inventory overlays.
         for (Overlay overlay : overlays) {
            renderables.addAll(overlay.render());
         }
