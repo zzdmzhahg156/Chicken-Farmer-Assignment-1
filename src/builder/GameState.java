@@ -2,6 +2,7 @@ package builder;
 
 import builder.inventory.Inventory;
 import builder.player.Player;
+import builder.world.World;
 
 /**
  * An interface to the game state information, including world, player, and inventory data.
@@ -21,4 +22,5 @@ public interface GameState {
      */
     Inventory getInventory();
     Player getPlayer();
+    World getWorld();
 }

@@ -2,10 +2,16 @@ package builder.player;
 
 import builder.GameState;
 import builder.Tickable;
+import builder.entities.tiles.Tile;
 import builder.ui.RenderableGroup;
+import builder.world.BeanWorld;
+import builder.world.World;
+import builder.world.WorldBuilder;
 import engine.EngineState;
 import engine.game.Direction;
+import engine.game.Game;
 import engine.input.KeyState;
+import engine.renderer.Dimensions;
 import engine.renderer.Renderable;
 
 import java.util.List;
@@ -16,24 +22,62 @@ public class PlayerManager implements Tickable, RenderableGroup {
         this.chickenFarmer = new ChickenFarmer(x, y);
     }
 
+    private boolean canMove(EngineState state, GameState game) {
+        if (game == null) {
+            return true;
+        }
+
+        World world = game.getWorld();
+        if (world == null) {
+            return true;
+        }
+
+        KeyState keys = state.getKeys();
+
+        int targetX = chickenFarmer.getX();
+        int targetY = chickenFarmer.getY();
+        int move_amount = state.getDimensions().tileSize()/2;
+
+
+        if (keys.isDown('w')) {
+            targetY -= move_amount;
+        } else if (keys.isDown('s')) {
+            targetY += move_amount;
+        } else if (keys.isDown('a')) {
+            targetX -= move_amount;
+        } else if (keys.isDown('d')) {
+            targetX += move_amount;
+        }
+
+
+        Dimensions dimensions = state.getDimensions();
+        List<Tile> tilesAtTarget = world.tilesAtPosition(targetX, targetY, dimensions);
+
+
+        for (Tile tile : tilesAtTarget) {
+            if (!tile.canWalkThrough()) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     @Override
     public void tick(EngineState state, GameState game){
         KeyState keys = state.getKeys();
         this.chickenFarmer.tick(state);
 
-        if (keys.isDown('w')) {
+        if (keys.isDown('w') && canMove(state, game)){
             chickenFarmer.move(Direction.NORTH, 1);
-        } else if (keys.isDown('s')) {
+        } else if (keys.isDown('s') && canMove(state, game)) {
             chickenFarmer.move(Direction.SOUTH, 1);
-        } else if (keys.isDown('a')) {
+        } else if (keys.isDown('a') && canMove(state, game)) {
             chickenFarmer.move(Direction.WEST, 1);
-        } else if (keys.isDown('d')) {
+        } else if (keys.isDown('d') && canMove(state, game)) {
             chickenFarmer.move(Direction.EAST, 1);
-        } else {
-//            chickenFarmer.move(Direction.SOUTH, 0);
         }
-
     }
+
 
     public Player getPlayer(){
         return chickenFarmer;
