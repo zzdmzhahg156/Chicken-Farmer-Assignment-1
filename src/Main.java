@@ -14,6 +14,7 @@ import java.io.IOException;
  * @provided
  */
 public class Main {
+
     private static final int SIZE = 800;
     private static final int TILES_PER_ROW = 25;
 
