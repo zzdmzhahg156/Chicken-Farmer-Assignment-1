@@ -4,9 +4,7 @@ import builder.GameState;
 import builder.inventory.items.Hoe;
 import builder.ui.SpriteGallery;
 import engine.EngineState;
-import engine.art.sprites.Sprite;
 import engine.art.sprites.SpriteGroup;
-import engine.game.Entity;
 
 public class Grass extends Tile{
 private final SpriteGroup grass = SpriteGallery.grass;
