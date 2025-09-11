@@ -11,7 +11,6 @@ import builder.inventory.TinyInventory;
 import builder.player.ChickenFarmer;
 import builder.player.Player;
 import engine.EngineState;
-import engine.game.Direction;
 import engine.input.KeyState;
 import engine.input.MouseState;
 import engine.renderer.Dimensions;
