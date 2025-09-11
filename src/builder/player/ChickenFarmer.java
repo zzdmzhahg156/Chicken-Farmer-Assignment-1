@@ -10,6 +10,11 @@ import engine.game.Entity;
 import engine.timing.Animation;
 import engine.timing.AnimationDuration;
 
+/**
+ * An instance of the player entity.
+ * The chicken farmer is rendered to the screen and moved by the PlayerManager.
+ */
+
 public class ChickenFarmer extends Entity implements Player {
     private final SpriteGroup art = SpriteGallery.chickenFarmer;
     private final Animation leftWalking =
@@ -41,6 +46,7 @@ public class ChickenFarmer extends Entity implements Player {
                     });
 
     private Direction travelling = Direction.SOUTH;
+
 
     public ChickenFarmer(int x, int y){
         super(x,y);
