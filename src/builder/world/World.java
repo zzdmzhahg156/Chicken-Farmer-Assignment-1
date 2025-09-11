@@ -32,7 +32,8 @@ public interface World {
 
     /**
      * Return all tiles in the world.
-     * Modifying the returned list must not modify the state of the world (although modifying the tiles within the list will).
+     * Modifying the returned list must not modify the state of the world
+     * (although modifying the tiles within the list will).
      * The order of the tiles is unspecified, any ordering is suitable.
      * Returns:
      * All tiles in the world.

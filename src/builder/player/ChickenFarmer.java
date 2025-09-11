@@ -73,7 +73,8 @@ public class ChickenFarmer extends Entity implements Player {
      * The player's sprite should also be updated based on the move.
      * If the player moves north, the sprite should be set to 'up'. If the player moves south,
      * the sprite should be set to 'down'. If the player moves either east or west,
-     * the sprite should be set to the appropriate animation step of that direction, see the hint in the class comment.
+     * the sprite should be set to the appropriate animation step of that direction,
+     *  see the hint in the class comment.
      * Note: Moving to a negative position is unspecified and won't be tested.
      * Parameters:
      * direction - The direction to move in.

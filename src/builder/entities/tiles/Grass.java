@@ -29,14 +29,17 @@ public class Grass extends Tile {
     }
 
     /**
-     *When a hoe is used on a grass tile, it should be marked for removal and replaced with a dirt tile at the same location.
-     * If the tile is already marked for removal (according to Entity.markForRemoval()) then it should not be replaced.
+     *When a hoe is used on a grass tile, it should be marked
+     * for removal and replaced with a dirt tile at the same location.
+     * If the tile is already marked for removal
+     * (according to Entity.markForRemoval()) then it should not be replaced.
      * Specified by:
      * use in interface Usable
      * Overrides:
      * use in class Tile
      * Parameters:
-     * state - The state of the engine provides information about which tick this interaction occurred during.
+     * state - The state of the engine provides information
+     * about which tick this interaction occurred during.
      * game - The game state that can be queried or updated as needed.
      */
     public void use(EngineState state, GameState game) {

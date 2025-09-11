@@ -28,18 +28,30 @@ public class WorldBuilder {
 
     /**
      * Read the encoded world text and construct the corresponding list of tiles.
-     * Each line in the text corresponds to a horizontal row of tiles. Each character correspond to a tile. A character in the file at line 3, character 10, will correspond to a tile at y=2 and x=9.
-     * The character in the encoding indicates the type of tile to construct based on TileFactory.fromSymbol(int, int, char).
-     * The number of lines and length of those lines must correspond to the dimensions provided. For example, if the window size is 800 and the tile size is 25 then we expect (800/25 =) 32 tiles so there must be 32 lines of text and each line must have 32 characters. Otherwise, a WorldLoadException is thrown.
+     * Each line in the text corresponds to a horizontal
+     * row of tiles. Each character correspond to a tile.
+     * A character in the file at line 3, character 10,
+     * will correspond to a tile at y=2 and x=9.
+     * The character in the encoding indicates the type of
+     * tile to construct based on TileFactory.fromSymbol(int, int, char).
+     * The number of lines and length of those lines must correspond
+     * to the dimensions provided. For example, if the window size
+     * is 800 and the tile size is 25 then we expect (800/25 =)
+     * 32 tiles so there must be 32 lines of text and each line must
+     * have 32 characters. Otherwise, a WorldLoadException is thrown.
      * Parameters:
-     * dimensions - The dimensions of the world. The tile encoding must correspond to these dimensions.
+     * dimensions - The dimensions of the world. The tile encoding
+     * must correspond to these dimensions.
      * text - The text encoding of a world.
      * Returns:
      * A list of tiles loaded from the given string.
      * Throws:
-     * WorldLoadException - If the number of lines doesn't match the required amount according to the dimensions.
-     * WorldLoadException - If the length of any line doesn't match the required amount according to the dimensions.
-     * WorldLoadException - If any character doesn't correspond to a tile according to TileFactory.fromSymbol(int, int, char).
+     * WorldLoadException - If the number of lines doesn't match
+     * the required amount according to the dimensions.
+     * WorldLoadException - If the length of any line doesn't
+     * match the required amount according to the dimensions.
+     * WorldLoadException - If any character doesn't correspond
+     * to a tile according to TileFactory.fromSymbol(int, int, char).
      */
     public static List<Tile> fromString(Dimensions dimensions,
                                         String text)
@@ -86,7 +98,8 @@ public class WorldBuilder {
     /**
      Read the provided file and attempt to create
      a new world based on the tile encoding in the file.
-     See fromString(Dimensions, String) for a description of how the tile encoding is read.
+     See fromString(Dimensions, String) for a description of
+     how the tile encoding is read.
 
      Parameters:
      dimensions - The dimensions of the world.

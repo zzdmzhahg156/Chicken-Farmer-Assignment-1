@@ -14,7 +14,8 @@ import java.util.List;
 /**
  * A world instance for the JavaBeans game.
  * A world consists of a grid of tiles.
- * The tiles must be updated by the world each tick and appropriately rendered via the render method.
+ * The tiles must be updated by the world each tick and
+ * appropriately rendered via the render method.
  */
 public class BeanWorld implements RenderableGroup, Tickable, World {
     private final List<Tile> tiles;

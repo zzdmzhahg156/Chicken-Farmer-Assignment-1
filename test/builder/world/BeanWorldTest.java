@@ -27,7 +27,7 @@ public class BeanWorldTest {
     private EngineState mockEngineState;
     private GameState mockGameState;
 
-    @Before
+//    @Before
 //    public void setUp() {
 //        world = new BeanWorld();
 //        mockDimensions = mock(Dimensions.class);

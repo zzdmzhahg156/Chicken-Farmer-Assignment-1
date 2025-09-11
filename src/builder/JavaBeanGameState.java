@@ -5,7 +5,8 @@ import builder.player.Player;
 import builder.world.World;
 
 /**
- * An implementation of the game state for the JavaBean game. Stores the world, player, and inventory.
+ * An implementation of the game state for the JavaBean game.
+ * Stores the world, player, and inventory.
  */
 public class JavaBeanGameState implements GameState {
     private final World world;

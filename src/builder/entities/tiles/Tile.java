@@ -19,9 +19,11 @@ import java.util.List;
  * Represents a tile on the 'ground' of our world. Each tile is responsible for managing:
  * what entities are stacked upon it,
  * gathering the Renderables for itself and its stacked entities, and
- * (in stage 3) interactions with itself and entities stacked upon it (related: Interactable and Usable).
+ * (in stage 3) interactions with itself and entities stacked u
+ * pon it (related: Interactable and Usable).
  * Invariant:
- * getX() >= 0, getX() is less than the window height, getY() >= 0, getY() is less than the window width
+ * getX() >= 0, getX() is less than the window height, getY() >= 0,
+ * getY() is less than the window width
  */
 public abstract class Tile
         extends Entity
@@ -51,7 +53,8 @@ public abstract class Tile
     }
 
     /**
-     * Set the sprite group for this tile and updates the current sprite (see updateSprite(String)) to the 'default' sprite of the given group.
+     * Set the sprite group for this tile and updates the current
+     * sprite (see updateSprite(String)) to the 'default' sprite of the given group.
      * Parameters:
      * art - A sprite group to use for this tile's sprites.
      * Requires:
@@ -66,9 +69,11 @@ public abstract class Tile
      * Parameters:
      * artName - The name of the art within the sprite group.
      * Throws:
-     * ArtNotFoundException - If the given name doesn't exist within the sprite group.
+     * ArtNotFoundException - If the given name doesn't exist
+     * within the sprite group.
      * Hint:
-     * You don't need to do anything special to throw ArtNotFoundException, SpriteGroup.getSprite(String) will do it for you.
+     * You don't need to do anything special to throw ArtNotFoundException,
+     * SpriteGroup.getSprite(String) will do it for you.
      */
     public void updateSprite(String artName)
             throws ArtNotFoundException {
