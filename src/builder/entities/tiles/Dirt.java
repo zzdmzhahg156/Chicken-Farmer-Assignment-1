@@ -44,7 +44,7 @@ public class Dirt extends Tile {
                 return;
             }
 
-            if (game.getInventory().getCoins() < Cabbage.Cost) {
+            if (game.getInventory().getCoins() < Cabbage.COST) {
                 return;
             }
 
@@ -59,7 +59,7 @@ public class Dirt extends Tile {
 
             Cabbage cabbage = new Cabbage(this.getX(),this.getY());
             this.placeOn(cabbage);
-            game.getInventory().addCoins(-Cabbage.Cost);
+            game.getInventory().addCoins(-Cabbage.COST);
         }
     }
 

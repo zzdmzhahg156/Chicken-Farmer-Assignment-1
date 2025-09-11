@@ -11,7 +11,7 @@ import engine.timing.TimerDuration;
 
 public class Cabbage extends Entity implements Interactable {
     private static final SpriteGroup cabbage = SpriteGallery.cabbage;
-    public static final int Cost = 2;
+    public static final int COST = 2;
     private RepeatingTimer timer;
     private final String[] stages = {"default", "budding", "growing", "grown", "collectable"};
     private int currentStage;
@@ -39,7 +39,7 @@ public class Cabbage extends Entity implements Interactable {
     public void interact(EngineState state, GameState game) {
         if (currentStage == stages.length - 1) {
             game.getInventory().addCoins(3);
-            game.getInventory().addFood(Cost);
+            game.getInventory().addFood(COST);
             markForRemoval();
         }
     }
