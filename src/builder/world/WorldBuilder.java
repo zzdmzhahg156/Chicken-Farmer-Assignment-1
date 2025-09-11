@@ -21,6 +21,10 @@ public class WorldBuilder {
         List <Tile> tiles = new ArrayList<>();
         String[] rows = text.split("\n", -1);
 
+        if (rows.length > 0 && rows[rows.length - 1].isEmpty()) {
+            rows = java.util.Arrays.copyOf(rows, rows.length - 1);
+        }
+
         int expectedRows = dimensions.windowSize()/dimensions.tileSize();
         if (expectedRows != rows.length) {
             throw new WorldLoadException("Expected rows not equal provided", expectedRows, rows.length);
