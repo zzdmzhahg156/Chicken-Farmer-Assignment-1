@@ -21,6 +21,8 @@ public interface GameState {
      * @return The inventory of the player.
      */
     Inventory getInventory();
+
     Player getPlayer();
+
     World getWorld();
 }

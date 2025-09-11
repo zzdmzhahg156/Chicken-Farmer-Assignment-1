@@ -16,13 +16,14 @@ private final SpriteGroup grass = SpriteGallery.grass;
     }
 
     public void use(EngineState state, GameState game){
-        if (this.isMarkedForRemoval()) {
-            return;
-        }
+        super.use(state,game);
+
         if (game.getInventory().getHolding() instanceof Hoe) {
-            Dirt dirt = new Dirt(this.getX(), this.getY());
-            markForRemoval();
-            this.placeOn(dirt);
+            if (!isMarkedForRemoval()){
+                markForRemoval();
+                Dirt dirt = new Dirt(this.getX(), this.getY());
+                this.placeOn(dirt);
+            }
         }
     }
 }

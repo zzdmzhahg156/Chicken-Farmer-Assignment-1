@@ -13,7 +13,7 @@ public class TinyInventory implements Inventory {
     // note: there's no reason that this class needs to store less than 10 elements,
     //       we've simply made it so.
     private final Item[] contents;
-    private int coins = 0;
+    private int coins = 10;
     private int food = 0;
     private int active = 0;
 

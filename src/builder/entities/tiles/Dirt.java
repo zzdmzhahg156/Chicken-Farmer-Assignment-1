@@ -34,6 +34,8 @@ public class Dirt extends Tile {
     @Override
     public void use(EngineState state,
                     GameState game) {
+        super.use(state,game);
+
         if (game.getInventory().getHolding() instanceof Hoe) {
             till();
         } else if (game.getInventory().getHolding() instanceof Bucket) {
@@ -49,8 +51,9 @@ public class Dirt extends Tile {
             int corX = game.getPlayer().getX();
             int corY = game.getPlayer().getY();
             Dimensions dimension = state.getDimensions();
+            int checkCabbage = (this.getStackedEntities().size());
 
-            if (game.getWorld().tilesAtPosition(corX,corY,dimension).size() > 1) {
+            if (checkCabbage > 0) {
                 return;
             }
 

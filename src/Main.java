@@ -8,11 +8,7 @@ import engine.renderer.TileGrid;
 
 import java.io.IOException;
 
-/**
- * A main class to execute the JavaBean game.
- *
- * @provided
- */
+
 public class Main {
 
     private static final int SIZE = 800;
@@ -34,7 +30,7 @@ public class Main {
 
         // Optionally uncomment this line to turn on debug mode
 //        engine.debug().on();
-//
+
         run(engine);
     }
 

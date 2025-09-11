@@ -5,10 +5,10 @@ import builder.ui.SpriteGallery;
 import engine.art.sprites.SpriteGroup;
 
 public class OreVein extends Tile{
-    private static final SpriteGroup ore = SpriteGallery.field;
+    private static final SpriteGroup ore = SpriteGallery.rock;
 
     public OreVein(int x, int y) {
-        super(x, y, SpriteGallery.field);
+        super(x, y, SpriteGallery.rock);
     }
 
     public Ore getOre() {
