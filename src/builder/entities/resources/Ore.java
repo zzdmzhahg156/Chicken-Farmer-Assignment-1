@@ -8,10 +8,26 @@ import engine.EngineState;
 import engine.art.sprites.SpriteGroup;
 import engine.game.Entity;
 
+/**
+ *
+ An entity that is stacked on an OreVein and yields coins when mined.
+ The ore initially has 10 coins and can be mined by the player using the jackhammer.
+ The ore is initially rendered as 'default' within SpriteGallery.rock.
+ */
 public class Ore extends Entity implements Usable {
     private static final SpriteGroup ore = SpriteGallery.rock;
     private int remainingValue;
 
+    /**
+     Construct a new ore entity at the given x, y position.
+     Initially the ore is rendered as 'default' within SpriteGallery.rock.
+
+     Parameters:
+     x - The x-axis (horizontal) coordinate.
+     y - The y-axis (vertical) coordinate.
+     Requires:
+     x >= 0, x is less than the window width, y >= 0, y is less than the window height
+     */
     public Ore(int x, int y) {
         super(x, y);
         setSprite(ore.getSprite("default"));
@@ -44,11 +60,9 @@ public class Ore extends Entity implements Usable {
     public void tick(EngineState engineState) {
         if (remainingValue > 9) {
             setSprite(ore.getSprite("default"));
-        }
-        else if (remainingValue > 1) {
+        }  else if (remainingValue > 1) {
             setSprite(ore.getSprite("damaged"));
-        }
-        else {
+        }  else {
             setSprite((ore.getSprite("depleted")));
         }
     }

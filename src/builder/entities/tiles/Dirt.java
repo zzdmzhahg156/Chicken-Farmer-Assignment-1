@@ -18,7 +18,7 @@ import engine.renderer.Dimensions;
  */
 public class Dirt extends Tile {
     private final SpriteGroup field = SpriteGallery.field;
-    private final SpriteGroup Tilled = SpriteGallery.tilled;
+    private final SpriteGroup tilled = SpriteGallery.tilled;
     private boolean isTilled = false;
 
     /**
@@ -47,7 +47,7 @@ public class Dirt extends Tile {
      */
     public void till() {
         this.isTilled = true;
-        setArt(Tilled);
+        setArt(tilled);
     }
 
     /**
@@ -62,7 +62,7 @@ public class Dirt extends Tile {
     @Override
     public void use(EngineState state,
                     GameState game) {
-        super.use(state,game);
+        super.use(state, game);
         if (game.getInventory().getHolding() instanceof Hoe) {
             till();
         } else if (game.getInventory().getHolding() instanceof Bucket) {
@@ -84,7 +84,7 @@ public class Dirt extends Tile {
                 return;
             }
 
-            Cabbage cabbage = new Cabbage(this.getX(),this.getY());
+            Cabbage cabbage = new Cabbage(this.getX(), this.getY());
             this.placeOn(cabbage);
             game.getInventory().addCoins(-Cabbage.COST);
         }

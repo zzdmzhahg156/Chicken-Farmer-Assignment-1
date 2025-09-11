@@ -14,9 +14,23 @@ import engine.renderer.Renderable;
 
 import java.util.List;
 
+/**
+ *
+ Manages the users interaction with the player through keyboard/mouse interactions.
+ Stores and provides access to the player instance and renders the player via the render method.
+ */
 public class PlayerManager implements Tickable, RenderableGroup {
     private final ChickenFarmer chickenFarmer;
-    public PlayerManager(int x, int y){
+
+    /**
+     * Construct a new player manager and a new player instance at the given x, y position.
+     * Parameters:
+     * x - The x-axis (horizontal) coordinate to spawn the player.
+     * y - The y-axis (vertical) coordinate to spawn the player.
+     * Requires:
+     * x, y is a valid position within the game, i.e. positive and less than the window size.
+     */
+    public PlayerManager(int x, int y) {
         this.chickenFarmer = new ChickenFarmer(x, y);
     }
 
@@ -33,16 +47,16 @@ public class PlayerManager implements Tickable, RenderableGroup {
         KeyState keys = state.getKeys();
         int targetX = chickenFarmer.getX();
         int targetY = chickenFarmer.getY();
-        int move_amount = state.getDimensions().tileSize()/2;
+        int moveAmount = state.getDimensions().tileSize() / 2;
 
         if (keys.isDown('w')) {
-            targetY -= move_amount;
+            targetY -= moveAmount;
         } else if (keys.isDown('s')) {
-            targetY += move_amount;
+            targetY += moveAmount;
         } else if (keys.isDown('a')) {
-            targetX -= move_amount;
+            targetX -= moveAmount;
         } else if (keys.isDown('d')) {
-            targetX += move_amount;
+            targetX += moveAmount;
         }
 
         Dimensions dimensions = state.getDimensions();
@@ -57,11 +71,11 @@ public class PlayerManager implements Tickable, RenderableGroup {
     }
 
     @Override
-    public void tick(EngineState state, GameState game){
+    public void tick(EngineState state, GameState game) {
         KeyState keys = state.getKeys();
         this.chickenFarmer.tick(state);
 
-        if (keys.isDown('w') && canMove(state, game)){
+        if (keys.isDown('w') && canMove(state, game)) {
             chickenFarmer.move(Direction.NORTH, 1);
         } else if (keys.isDown('s') && canMove(state, game)) {
             chickenFarmer.move(Direction.SOUTH, 1);
@@ -74,7 +88,8 @@ public class PlayerManager implements Tickable, RenderableGroup {
         World world = game.getWorld();
         Dimensions dimension = state.getDimensions();
 
-        List<Tile> tiles = world.tilesAtPosition(chickenFarmer.getX(), chickenFarmer.getY(), dimension);
+        List<Tile> tiles = world.tilesAtPosition(
+                chickenFarmer.getX(), chickenFarmer.getY(), dimension);
         for (Tile tile : tiles) {
             tile.interact(state, game);
         }
@@ -90,10 +105,15 @@ public class PlayerManager implements Tickable, RenderableGroup {
         }
     }
 
-
-    public Player getPlayer(){
+    /**
+     * Returns the player instance managed by this manager.
+     * Returns:
+     * The player instance.
+     */
+    public Player getPlayer() {
         return chickenFarmer;
     }
+
 
     @Override
     public List<Renderable> render() {

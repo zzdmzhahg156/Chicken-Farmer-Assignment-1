@@ -8,7 +8,9 @@ import engine.renderer.TileGrid;
 
 import java.io.IOException;
 
-
+/**
+ * The main class to run the game
+ */
 public class Main {
 
     private static final int SIZE = 800;

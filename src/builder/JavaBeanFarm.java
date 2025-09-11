@@ -101,7 +101,7 @@ public class JavaBeanFarm implements Game {
         // this.brutus.tick(state);
 
         // Stage 1: Uncomment these lines to progress the player.
-        GameState game = new JavaBeanGameState(world, playerManager.getPlayer(), inventory); //null = inverntory
+        GameState game = new JavaBeanGameState(world, playerManager.getPlayer(), inventory);
         this.playerManager.tick(state, game);
 
         // Stage 2: Uncomment this line to progress the world.
@@ -109,7 +109,7 @@ public class JavaBeanFarm implements Game {
 
         // Stage 3: Uncomment these lines to progress the inventory overlays.
         for (Overlay overlay : overlays) {
-           overlay.tick(state, game);
+            overlay.tick(state, game);
         }
     }
 
@@ -138,9 +138,9 @@ public class JavaBeanFarm implements Game {
         // Stage 0: Uncomment this line to render Brutus.
         // renderables.add(this.brutus);
 
-//        // Stage 3: Uncomment this line to render the inventory overlays.
+        // Stage 3: Uncomment this line to render the inventory overlays.
         for (Overlay overlay : overlays) {
-           renderables.addAll(overlay.render());
+            renderables.addAll(overlay.render());
         }
 
         return renderables;

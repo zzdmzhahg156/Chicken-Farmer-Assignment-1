@@ -45,21 +45,43 @@ public class ChickenFarmer extends Entity implements Player {
                             art.getSprite("down")
                     });
 
-    private Direction travelling = Direction.SOUTH;
-
-
-    public ChickenFarmer(int x, int y){
-        super(x,y);
+    /**
+     * Constructs a chicken farmer instance at the given coordinates.
+     * Parameters:
+     * x - The x-axis (horizontal) coordinate.
+     * y - The y-axis (vertical) coordinate.
+     * Requires:
+     * x >= 0, x is less than the window width, y >= 0, y is less than the window height
+     */
+    public ChickenFarmer(int x, int y) {
+        super(x, y);
     }
 
     @Override
-    public int getDamage(){
+    public int getDamage() {
         return 2;
     }
 
-
-    public void move(Direction direction, int amount){
-
+    /**
+     * Move the player by the given amount in the given direction.
+     * Update the player's x or y position according to the following table.
+     * Direction x y
+     * NORTH-amount
+     * SOUTH amount
+     * EAST amount
+     * WEST-amount
+     * The player's sprite should also be updated based on the move.
+     * If the player moves north, the sprite should be set to 'up'. If the player moves south,
+     * the sprite should be set to 'down'. If the player moves either east or west,
+     * the sprite should be set to the appropriate animation step of that direction, see the hint in the class comment.
+     * Note: Moving to a negative position is unspecified and won't be tested.
+     * Parameters:
+     * direction - The direction to move in.
+     * amount - How many pixels to move the player.
+     * Requires:
+     * amount > 0
+     */
+    public void move(Direction direction, int amount) {
         switch (direction) {
             case NORTH -> setY(getY() - amount);
             case SOUTH -> setY(getY() + amount);
@@ -76,7 +98,7 @@ public class ChickenFarmer extends Entity implements Player {
     }
 
     @Override
-    public void tick (EngineState state) {
+    public void tick(EngineState state) {
         setSprite(downFace);
         leftWalking.tick(state);
         rightWalking.tick(state);
@@ -84,8 +106,16 @@ public class ChickenFarmer extends Entity implements Player {
         upWalking.tick(state);
     }
 
+    /**
+     * Animate the player using an item.
+     * If the given item is null (the player is not holding an item) nothing should happen.
+     * If the item's Item.useAnimation() is not empty (i.e. Optional.isPresent() is true)
+     * then the player should store that animation and set its sprite to show the animation.
+     * Parameters:
+     * item - The item that the player is currently holding.
+     */
     public void use(Item item) {
-        if (item == null){
+        if (item == null) {
             return;
         }
 

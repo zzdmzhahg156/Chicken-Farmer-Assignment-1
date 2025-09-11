@@ -11,23 +11,33 @@ import engine.renderer.Renderable;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * A world instance for the JavaBeans game.
+ * A world consists of a grid of tiles.
+ * The tiles must be updated by the world each tick and appropriately rendered via the render method.
+ */
 public class BeanWorld implements RenderableGroup, Tickable, World {
     private final List<Tile> tiles;
 
+    /**
+     *Construct a new empty world with no tiles.
+     * This constructor should be avoided and WorldBuilder methods should be preferred.
+     * This constructor should be used when testing the class.
+     */
     public BeanWorld() {
         this.tiles = new ArrayList<Tile>();
     }
 
     @Override
     public List<Tile> tilesAtPosition(int x, int y, Dimensions dimensions) {
-        List <Tile> result = new ArrayList<>();
-        int tile_x = dimensions.pixelToTile(x);
-        int tile_y = dimensions.pixelToTile(y);
+        List<Tile> result = new ArrayList<>();
+        int tileX = dimensions.pixelToTile(x);
+        int tileY = dimensions.pixelToTile(y);
 
         for (Tile tile : tiles) {
             int tileGridX = dimensions.pixelToTile(tile.getX());
             int tileGridY = dimensions.pixelToTile(tile.getY());
-            if (tileGridX == tile_x && tileGridY == tile_y) {
+            if (tileGridX == tileX && tileGridY == tileY) {
                 result.add(tile);
             }
         }
@@ -37,7 +47,7 @@ public class BeanWorld implements RenderableGroup, Tickable, World {
 
     @Override
     public void tick(EngineState state, GameState game) {
-        for (Tile tile: tiles) {
+        for (Tile tile : tiles) {
             tile.tick(state);
         }
     }

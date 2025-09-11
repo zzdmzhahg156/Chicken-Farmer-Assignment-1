@@ -22,7 +22,17 @@ public interface GameState {
      */
     Inventory getInventory();
 
+    /**
+     * Returns the current state of the player. Useful for retrieving the player's location.
+     * Returns:
+     * The player of the game.
+     */
     Player getPlayer();
 
+    /**
+     Returns the current state of the inventory.
+     The returned inventory is mutable,
+     that is calling mutator methods such as Inventory.addCoins(int) will modify the inventory.
+     */
     World getWorld();
 }

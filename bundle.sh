@@ -1,5 +1,7 @@
 #!/bin/bash
 
+cd $(dirname "$0")
+
 if [ -f submission.zip ]; then
   old=$(date +%s)
   echo "Back up old submission as submission-${old}\n"

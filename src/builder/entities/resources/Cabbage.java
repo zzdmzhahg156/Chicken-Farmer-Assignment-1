@@ -9,6 +9,11 @@ import engine.game.Entity;
 import engine.timing.RepeatingTimer;
 import engine.timing.TimerDuration;
 
+/**
+ *
+ An entity planted (stacked on) Dirt that grows and can be collected by the player once grown.
+ A cabbage is initially rendered as 'default' within SpriteGallery.cabbage.
+ */
 public class Cabbage extends Entity implements Interactable {
     private static final SpriteGroup cabbage = SpriteGallery.cabbage;
     public static final int COST = 2;
@@ -16,6 +21,15 @@ public class Cabbage extends Entity implements Interactable {
     private final String[] stages = {"default", "budding", "growing", "grown", "collectable"};
     private int currentStage;
 
+    /**
+     * Construct a new cabbage entity at the given x, y position.
+     * Initially the cabbage is rendered as 'default' within SpriteGallery.cabbage.
+     * Parameters:
+     * x - The x-axis (horizontal) coordinate.
+     * y - The y-axis (vertical) coordinate.
+     * Requires:
+     * x >= 0, x is less than the window width, y >= 0, y is less than the window height
+     */
     public Cabbage(int x, int y) {
         super(x, y);
         setSprite(cabbage.getSprite("default"));
