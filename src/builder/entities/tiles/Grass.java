@@ -10,9 +10,11 @@ import engine.game.Entity;
 
 public class Grass extends Tile{
 private final SpriteGroup grass = SpriteGallery.grass;
+private Dirt dirt;
 
     public Grass(int x, int y) {
         super(x, y, SpriteGallery.grass);
+        this.dirt = new Dirt(x,y);
     }
 
     public void use(EngineState state, GameState game){
@@ -21,8 +23,7 @@ private final SpriteGroup grass = SpriteGallery.grass;
         if (game.getInventory().getHolding() instanceof Hoe) {
             if (!isMarkedForRemoval()){
                 markForRemoval();
-                Dirt dirt = new Dirt(this.getX(), this.getY());
-                this.placeOn(dirt);
+                game.getWorld().place(dirt);
             }
         }
     }
