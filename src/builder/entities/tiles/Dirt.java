@@ -63,7 +63,6 @@ public class Dirt extends Tile {
     public void use(EngineState state,
                     GameState game) {
         super.use(state,game);
-
         if (game.getInventory().getHolding() instanceof Hoe) {
             till();
         } else if (game.getInventory().getHolding() instanceof Bucket) {
