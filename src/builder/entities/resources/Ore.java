@@ -17,6 +17,7 @@ import engine.game.Entity;
 public class Ore extends Entity implements Usable {
     private static final SpriteGroup ore = SpriteGallery.rock;
     private int remainingValue;
+    private int initialValue;
 
     /**
      Construct a new ore entity at the given x, y position.
@@ -32,6 +33,7 @@ public class Ore extends Entity implements Usable {
         super(x, y);
         setSprite(ore.getSprite("default"));
         this.remainingValue = 10;
+        this.initialValue = remainingValue;
     }
 
     @Override
@@ -58,9 +60,10 @@ public class Ore extends Entity implements Usable {
 
     @Override
     public void tick(EngineState engineState) {
-        if (remainingValue > 9) {
+        double remianPercentage = (double) remainingValue / initialValue;
+        if (remianPercentage > 0.9) {
             setSprite(ore.getSprite("default"));
-        }  else if (remainingValue > 1) {
+        }  else if (remianPercentage > 0.1) {
             setSprite(ore.getSprite("damaged"));
         }  else {
             setSprite((ore.getSprite("depleted")));
